@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import TodoItem from "./components/todo-item";
 import TodoDetails from "./components/todo-details";
+import { Skeleton } from "@mui/material";
 
 function App() {
   const [todoList, setTodoList] = useState([]);
@@ -47,7 +48,7 @@ function App() {
     fetchTodos();
   }, []);
 
-  if (loading) return <h1>Loading...</h1>;
+  if (loading) return <Skeleton variant="rectangulat" width={650} height={650} />;
 
   return (
     <div className="p-10">
@@ -66,7 +67,7 @@ function App() {
             })
           : null}
       </ul>
-      <TodoDetails todoDetails={todoDetails} openDialog={openDialog} setOpenDialog={setOpenDialog} />
+      <TodoDetails todoDetails={todoDetails} setTodoDetails={setTodoDetails} openDialog={openDialog} setOpenDialog={setOpenDialog} />
     </div>
   );
 }
